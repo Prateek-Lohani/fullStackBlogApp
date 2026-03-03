@@ -41,4 +41,21 @@ postRoutes.route("/posts").post(async (request, response) => {
   response.json(data);
 });
 
+// Update a post
+postRoutes.route("/posts/:id").put(async (request, response) => {
+  let db = database.getDb();
+  let updatedPost = {
+   $set:{
+    title: request.body.title,
+    author: request.body.author,
+    description: request.body.description,
+    date: new Date(request.body.date),
+   }
+  };
+  let data = await db.collection("posts").updateOne({_id:new ObjectId(request.params.id)},updatedPost);
+
+  response.json(data);
+});
+
+
 module.exports = postRoutes;
