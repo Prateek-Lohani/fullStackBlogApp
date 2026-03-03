@@ -11,7 +11,6 @@ app.use(cors());  // Enable Cross-Origin Resource Sharing for requests from diff
 app.use(express.json());  // Parse incoming request bodies as JSON
 
 app.use(posts)
-    console.log(process.env.MONGO_URI);
 
 app.listen(PORT,()=>{
     connect.connectToServer();
